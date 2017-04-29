@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - echo "Testing Dockerfile" ; tests/dockerfile-lint.sh
+  - echo "Testing Shellscripts" ; tests/shellcheck.sh || exit 0
+  - echo "Testing functionality" ; tests/functional.bats
+
+notifications:
+  email: false
