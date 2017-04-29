@@ -5,8 +5,8 @@ services:
 
 script:
   - echo "Testing Dockerfile" ; tests/dockerfile-lint.sh
-  - echo "Testing Shellscripts" ; tests/shellcheck.sh || exit 0
   - echo "Testing functionality" ; tests/functional.bats
+  - echo "Testing Shellscripts" ; tests/shellcheck.sh || exit 0
 
 notifications:
   email: false
