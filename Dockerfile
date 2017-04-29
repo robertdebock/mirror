@@ -1,5 +1,8 @@
 FROM httpd
 
+LABEL name=mirror
+LABEL version=1.0
+
 ENV directory /usr/local/apache2
 ENV file conf/extra/httpd-any.conf
 ENV configfile $directory/$file
@@ -8,10 +11,9 @@ EXPOSE 8080 8443
 
 VOLUME /data
 
-ADD start.sh /start.sh
-
 RUN apt-get update && \
     apt-get install -y openssl && \
+    apt-get clean all && \
     rm -rf /var/lib/apt/lists/* && \
     echo "LoadModule proxy_module modules/mod_proxy.so" >> $configfile && \
     echo "LoadModule proxy_http_module modules/mod_proxy_http.so" >> $configfile && \
@@ -22,7 +24,11 @@ RUN apt-get update && \
     echo "Include conf/extra/proxy-html.conf" >> $configfile && \
     echo "Include conf/extra/httpd-ssl.conf" >> $configfile && \
     echo "ServerName ${cn:-localhost}" >> $configfile && \
-    echo "Include conf/extra/httpd-any.conf" >>  $directory/conf/httpd.conf && \
-    chmod +x /start.sh
+    echo "Include conf/extra/httpd-any.conf" >>  $directory/conf/httpd.conf
+
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
 
 CMD exec /start.sh
+
+HEALTHCHECK CMD curl --fail --insecure https://localhost/ || exit 1
