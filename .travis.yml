@@ -3,6 +3,12 @@ sudo: required
 services:
   - docker
 
+install:
+  - docker pull koalaman/shellcheck
+  - docker pull projectatomic/dockerfile-lint
+  - docker build -t mirror .
+  - docker run --rm -p 8443:443 -d -e "externalurl=https://www.flickr.com/photos/robertdebock" --name "mirror" mirror
+
 script:
   - echo "Testing Dockerfile" ; tests/dockerfile-lint.sh
   - echo "Testing functionality" ; tests/functional.bats
