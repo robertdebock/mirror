@@ -19,7 +19,7 @@ ln -s /data/server.crt "${directory}"/conf/server.crt
 
 # Write a configfile.
 echo "INFO: Writing the custom Apache HTTPD configuration."
-echo "ServerName ${cn:-localhost}" >> "${directory}/conf/httpd.conf && \
+echo "ServerName ${cn:-localhost}" >> "${directory}"/conf/httpd.conf && \
 cat << EOF >> "${configfile}"
 SSLProxyEngine on
 
