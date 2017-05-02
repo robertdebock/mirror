@@ -26,3 +26,4 @@ docker run -p 8443:443 -e "externalurl=https://www.flickr.com/photos/robertdeboc
 ### Optional parameters
 - -v $(pwd)/data:/data - Map the volume "./data" to /data. This is the place where keys and certificates are expected, with this exact naming: server.key for the SSL Key, server.crt for the SSL Certificate.
 - -e "cn=example.com" - Set the common name to "example.com". Used for the SSL Certificate and the Apache ServerName.
+- --dns 8.8.8.8 - Set the DNS to 8.8.8.8 (Googles DNS). Use this to overcome DNS-blocked websites.
