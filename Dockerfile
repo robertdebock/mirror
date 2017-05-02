@@ -11,16 +11,16 @@ EXPOSE 8080 8443
 
 VOLUME /data
 
+ADD httpd-mirror.conf $configfile
+ADD start.sh /start.sh
+
 RUN apt-get update && \
     apt-get install -y curl openssl && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/* && \
-    echo "Include conf/extra/httpd-mirror.conf" >> $directory/conf/httpd.conf
+    echo "Include conf/extra/httpd-mirror.conf" >> $directory/conf/httpd.conf && \
+    chmod +x /start.sh
 
-ADD httpd-mirror.conf $configfile
-
-ADD start.sh /start.sh
-RUN chmod +x /start.sh
 
 CMD exec /start.sh
 
