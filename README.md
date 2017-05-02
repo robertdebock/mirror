@@ -1,4 +1,4 @@
-# Custom URL for any website
+# Mirror any website
 [![Build Status](https://travis-ci.org/robertdebock/mirror.svg?branch=master)](https://travis-ci.org/robertdebock/mirror)
 
 With this application you can mirror any IP or URL to an existing website. This may be useful to:
@@ -14,14 +14,21 @@ With this application you can mirror any IP or URL to an existing website. This 
 ````
 
 ## TL;DR
-Run it like this:
+For websites without a path:
 ````
-docker run -p 8443:443 -e "externalurl=https://www.flickr.com/photos/robertdebock" robertdebock/custom-url
+docker run -p 8443:443 -e "externalurl=https://www.google.fr/" robertdebock/mirror
 ````
+Nota bene: the URL ends with a /.
+
+For websites with a path:
+````
+docker run -p 8443:443 -e "externalurl=https://www.flickr.com/photos/robertdebock" robertdebock/mirror
+````
+Nota bene: the URL does not end with a /.
 
 ### Mandatory parameters
 - -p 8443:443 - Map host (external) TCP port to the container. In this case TCP port 8443 can be accessed by visitors and it's mapped to TP port 443 inside the container. Port 80 is also available in the container, serving the same content.
-- -e "externalurl=https://www.flickr.com/photos/robertdebock" - Setup the (Apache) proxy to map a custom URL to https://www.flickr.com/photos/robertdebock. It's best to (try to) open the website in a browser, let all redirects take place and use the final URL.
+- -e "externalurl=https://www.flickr.com/photos/robertdebock" - Setup the (Apache) proxy to map a custom URL to https://www.flickr.com/photos/robertdebock. It's best to (try to) open the website in a browser, let all redirects take place and use the final URL. In case you'd like to mirror the homepage, ensure you end the URL with a / . Like so https://bla.com/
 
 ### Optional parameters
 - -v $(pwd)/data:/data - Map the volume "./data" to /data. This is the place where keys and certificates are expected, with this exact naming: server.key for the SSL Key, server.crt for the SSL Certificate.
