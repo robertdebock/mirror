@@ -15,7 +15,7 @@ ADD httpd-mirror.conf $CONFIGFILE
 ADD start.sh /start.sh
 
 RUN apt-get update && \
-    apt-get install -y
+    apt-get install -y \
       curl \
       openssl && \
     rm -rf /var/lib/apt/lists/* && \
