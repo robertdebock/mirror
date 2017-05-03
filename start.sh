@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! "${externalurl}" ] ; then
-  echo "ERROR: You need to set the url to mirror using the \"\$externalurl\" variable!"
+if [ ! "${URL}" ] ; then
+  echo "ERROR: You need to set the url to mirror using the \"\$URL\" variable!"
   exit 1
 fi
 
@@ -9,7 +9,7 @@ fi
 if [ ! -f /data/server.key ] || [ ! -f /data/server.crt ] ; then
   # If keys are not available, generate them.
   echo "WARNING: Generating SSL Key and Certificate, because none were found."
-  openssl req -x509 -newkey rsa:4096 -keyout /data/server.key -out /data/server.crt -days 365 -subj "/CN=${cn:-localhost}" -nodes
+  openssl req -x509 -newkey rsa:4096 -keyout /data/server.key -out /data/server.crt -days 365 -subj "/CN=${DOMAIN:-localhost}" -nodes
 fi
 
 # The persisted, mounted or generated keys should be made available in the default directory.
@@ -19,13 +19,13 @@ ln -s /data/server.crt "${directory}"/conf/server.crt
 
 # Write a configfile.
 echo "INFO: Writing the custom Apache HTTPD configuration."
-echo "ServerName ${cn:-localhost}" >> "${directory}"/conf/httpd.conf && \
+echo "ServerName ${DOMAIN:-localhost}" >> "${directory}"/conf/httpd.conf && \
 cat << EOF >> "${configfile}"
 SSLProxyEngine on
 
 <Location "/">
-  ProxyPass ${externalurl}
-  ProxyPassReverse ${externalurl}
+  ProxyPass ${URL}
+  ProxyPassReverse ${URL}
 </Location>
 EOF
 

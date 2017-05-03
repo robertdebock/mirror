@@ -1,26 +1,26 @@
-FROM httpd
+FROM httpd:2.4.25
 
 LABEL name=mirror
-LABEL version=1.1
+LABEL version=1.2
 
-ENV directory /usr/local/apache2
-ENV file conf/extra/httpd-mirror.conf
-ENV configfile $directory/$file
+ENV DIRECTORY /usr/local/apache2
+ENV FILE conf/extra/httpd-mirror.conf
+ENV CONFIGFILE $DIRECTORY/$FILE
 
-EXPOSE 8080 8443
+EXPOSE 80 443
 
 VOLUME /data
 
-ADD httpd-mirror.conf $configfile
+ADD httpd-mirror.conf $CONFIGFILE
 ADD start.sh /start.sh
 
 RUN apt-get update && \
-    apt-get install -y curl openssl && \
-    apt-get clean all && \
+    apt-get install -y
+      curl \
+      openssl && \
     rm -rf /var/lib/apt/lists/* && \
-    echo "Include conf/extra/httpd-mirror.conf" >> $directory/conf/httpd.conf && \
+    echo "Include conf/extra/httpd-mirror.conf" >> $DIRECTORY/conf/httpd.conf && \
     chmod +x /start.sh
-
 
 CMD exec /start.sh
 

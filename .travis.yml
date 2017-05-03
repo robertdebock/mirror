@@ -6,12 +6,12 @@ services:
 install:
   - docker pull koalaman/shellcheck
   - docker pull projectatomic/dockerfile-lint
-  - docker run -p 8443:443 -d -e "externalurl=https://www.flickr.com/photos/robertdebock" $(docker build -q .)
+  - docker run -p 8443:443 -d -e "URL=https://www.flickr.com/photos/robertdebock" $(docker build -q .)
 
 script:
   - echo "Testing Dockerfile" ; tests/dockerfile-lint.sh
   - echo "Testing functionality" ; tests/functional.bats
-  - echo "Testing Shellscripts" ; tests/shellcheck.sh || exit 0
+  - echo "Testing Shellscripts" ; tests/shellcheck.sh
 
 notifications:
   email: false
