@@ -18,6 +18,7 @@ RUN apt-get update && \
     apt-get install -y \
       curl \
       openssl && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     echo "Include conf/extra/httpd-mirror.conf" >> $DIRECTORY/conf/httpd.conf && \
     chmod +x /start.sh

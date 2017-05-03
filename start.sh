@@ -14,13 +14,13 @@ fi
 
 # The persisted, mounted or generated keys should be made available in the default directory.
 echo "INFO: Linking SSL Key and Certificate to the runtime location."
-ln -s /data/server.key "${directory}"/conf/server.key
-ln -s /data/server.crt "${directory}"/conf/server.crt
+ln -s /data/server.key "${DIRECTORY}"/conf/server.key
+ln -s /data/server.crt "${DIRECTORY}"/conf/server.crt
 
 # Write a configfile.
 echo "INFO: Writing the custom Apache HTTPD configuration."
-echo "ServerName ${DOMAIN:-localhost}" >> "${directory}"/conf/httpd.conf && \
-cat << EOF >> "${configfile}"
+echo "ServerName ${DOMAIN:-localhost}" >> "${DIRECTORY}"/conf/httpd.conf && \
+cat << EOF >> "${CONFIGFILE}"
 SSLProxyEngine on
 
 <Location "/">
