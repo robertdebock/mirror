@@ -5,6 +5,7 @@ services:
 
 install:
   - docker run -p 8443:443 -d -e "URL=https://www.flickr.com/photos/robertdebock" $(docker build -q .)
+  - docker run -p 8444:443 -d -e "URL=https://thehftguy.com/" $(docker build -q .)
 
 script:
   - echo "Testing Dockerfile" ; tests/dockerfile-lint.sh
