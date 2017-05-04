@@ -21,11 +21,19 @@ ln -s /data/server.crt "${DIRECTORY}"/conf/server.crt
 echo "INFO: Writing the custom Apache HTTPD configuration."
 echo "ServerName ${DOMAIN:-localhost}" >> "${DIRECTORY}"/conf/httpd.conf && \
 cat << EOF >> "${CONFIGFILE}"
+# Allow an SSL backend for "${URL}"
 SSLProxyEngine on
+
+# Rewrite the HTML links.
+ProxyHTMLEnable On
+ProxyHTMLURLMap ${URL} /
 
 <Location "/">
   ProxyPass ${URL}
+  # Rewrite "Location" in the header to prevent redirects.
   ProxyPassReverse ${URL}
+  # Before rewriting, uncompress. Compress when done.
+  SetOutputFilter INFLATE;proxy-html;DEFLATE
 </Location>
 EOF
 

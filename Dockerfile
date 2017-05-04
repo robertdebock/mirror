@@ -1,7 +1,7 @@
 FROM httpd:2.4.25
 
 LABEL name=mirror
-LABEL version=1.2
+LABEL version=1.3
 
 ENV DIRECTORY /usr/local/apache2
 ENV FILE conf/extra/httpd-mirror.conf
@@ -19,7 +19,6 @@ RUN apt-get update && \
       curl \
       openssl && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
     echo "Include conf/extra/httpd-mirror.conf" >> $DIRECTORY/conf/httpd.conf && \
     chmod +x /start.sh
 
