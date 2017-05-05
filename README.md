@@ -34,3 +34,8 @@ Nota bene: the URL does not end with a /.
 - -v $(pwd)/data:/data - Map the volume "./data" to /data. This is the place where keys and certificates are expected, with this exact naming: server.key for the SSL Key, server.crt for the SSL Certificate.
 - -e "DOMAIN=example.com" - Set the common name to "example.com". Used for the SSL Certificate and the Apache ServerName.
 - --dns 8.8.8.8 - Set the DNS to 8.8.8.8 (Googles DNS). Use this to overcome DNS-blocked websites.
+
+## Where stuff is
+* The code is on [GitHub - mirror](https://github.com/robertdebock/mirror/).
+* Testing is done on [Travis CI - mirror](https://travis-ci.org/robertdebock/mirror/).
+* The Docker image is available [Docker Hub - mirror](https://hub.docker.com/r/robertdebock/mirror/).
