@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/robertdebock/mirror.svg?branch=master)](https://travis-ci.org/robertdebock/mirror)
 
 With this application you can mirror any IP or URL to an existing website. This may be useful to:
-- Hook a personal domain to some service like Flickr.
+- Hook a personal domain to some service like Flickr or Wordpress.
 - Allow visitors to see a website banned through regular channels.
 
 ## Overview
