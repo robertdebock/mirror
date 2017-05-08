@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Check if ${URL} was set.
 if [ ! "${URL}" ] ; then
   echo "ERROR: You need to set the url to mirror using the \"\$URL\" variable!"
   exit 1
