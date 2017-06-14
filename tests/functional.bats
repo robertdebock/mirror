@@ -15,7 +15,7 @@
   [ "${status}" -eq 0 ]
 }
 
-@test "Testing The Pirate Bay." {
+@test "Testing The Pirate Bay mirror." {
   run curl --insecure --fail https://localhost:8446/
   [ "${status}" -eq 0 ]
 }
