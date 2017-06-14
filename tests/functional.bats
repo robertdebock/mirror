@@ -14,3 +14,8 @@
   run curl --insecure --fail https://localhost:8445/
   [ "${status}" -eq 0 ]
 }
+
+@test "Testing The Pirate Bay." {
+  run curl --insecure --fail https://localhost:8446/
+  [ "${status}" -eq 0 ]
+}
