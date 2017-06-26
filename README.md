@@ -2,21 +2,21 @@
 [![Build Status](https://travis-ci.org/robertdebock/mirror.svg?branch=master)](https://travis-ci.org/robertdebock/mirror)
 
 With this application you can mirror any IP or URL to an existing website. This may be useful to:
-- Hook a personal domain to some service like Flickr, Wordpress or Tumblr.
+- Hook a personal domain to some service like Flickr, Wordpress, The Pirate Bay or Tumblr.
 - Allow visitors to see a website banned through regular channels.
 
 ## Overview
 ````
 +----------+    +------------------+    +------------------+
 | Internet | -> | This application | -> | Existing website |
-|          | -> | Docker container | -> | https://bla.com/ |
+|          |    | Docker container |    | https://bla.com/ |
 +----------+    +------------------+    +------------------+
 ````
 
 ## TL;DR
 For websites without a path:
 ````
-docker run -p 8443:443 -e "URL=https://www.google.fr/" robertdebock/mirror
+docker run -p 8443:443 -e "URL=https://thepiratebay.org/" robertdebock/mirror
 ````
 Nota bene: the URL ends with a /.
 
