@@ -7,10 +7,10 @@ With this application you can mirror any IP or URL to an existing website. This 
 
 ## Overview
 ````
-+----------+    +------------------+    +------------------+
-| Internet | -> | This application | -> | Existing website |
-|          |    | Docker container |    | https://bla.com/ |
-+----------+    +------------------+    +------------------+
++-----------------+    +------------------+    +------------------+
+| Your computer   | -> | This application | -> | Existing website |
+| or The internet |    | Docker container |    | https://bla.com/ |
++-----------------+    +------------------+    +------------------+
 ````
 
 ## TL;DR
