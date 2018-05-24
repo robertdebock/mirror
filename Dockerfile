@@ -1,7 +1,7 @@
 FROM httpd:2.4.33
 
 LABEL name=mirror
-LABEL version=1.4
+LABEL version=1.5
 
 ENV DIRECTORY /usr/local/apache2
 ENV FILE conf/extra/httpd-mirror.conf
