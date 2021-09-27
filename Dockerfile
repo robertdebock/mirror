@@ -3,6 +3,7 @@ FROM httpd:2.4
 LABEL maintainer="Robert de Bock <robert@meinit.nl>"
 LABEL name=mirror
 LABEL version=1.8
+LABEL build_date="2021-09-27"
 
 ENV DIRECTORY /usr/local/apache2
 ENV FILE conf/extra/httpd-mirror.conf
